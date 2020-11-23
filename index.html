@@ -6,15 +6,19 @@
             document.getElementById("linksDiv").innerHTML="";
             var postData={url:""}
             postData.url=document.getElementById("urlInput").value;
+      
+            var baseUrl=window.location.href;
+            console.log(baseUrl);
             $.ajax({
                 type:"POST",
                 data:postData,
-                url:"http://localhost:4001/readUrl/findLinks",
+                url:baseUrl+"readUrl/findLinks",
                 dataType:"json",
                 success:function(data){
                     var links=[];
                    links=(JSON.stringify(data));
                    data.forEach(link => {
+
                     document.getElementById("linksDiv").innerHTML+=`<div>${link}</div>`;
                     });
                    
@@ -29,18 +33,20 @@
         }
         function findANDopen()
         {
+            var baseUrl=window.location.href;
             document.getElementById("linksDiv").innerHTML="";
             var postData={url:""}
             postData.url=document.getElementById("urlInput").value;
             $.ajax({
                 type:"POST",
                 data:postData,
-                url:"http://localhost:4001/readUrl/find&open",
+                url:baseUrl+"readUrl/find&open",
                 dataType:"json",
                 success:function(data){
                     var links=[];
                    links=(JSON.stringify(data));
                    data.forEach(link => {
+                       open(link);
                     document.getElementById("linksDiv").innerHTML+=`<div>${link}</div>`;
                     });
                    
