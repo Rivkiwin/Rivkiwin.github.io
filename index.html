@@ -1,0 +1,68 @@
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        function find()
+        {
+            document.getElementById("linksDiv").innerHTML="";
+            var postData={url:""}
+            postData.url=document.getElementById("urlInput").value;
+            $.ajax({
+                type:"POST",
+                data:postData,
+                url:"http://localhost:4001/readUrl/findLinks",
+                dataType:"json",
+                success:function(data){
+                    var links=[];
+                   links=(JSON.stringify(data));
+                   data.forEach(link => {
+                    document.getElementById("linksDiv").innerHTML+=`<div>${link}</div>`;
+                    });
+                   
+                    // alert("employee added successfuly");
+                },
+                error: function(err)
+                {
+                    alert(err);
+                },
+                
+            })
+        }
+        function findANDopen()
+        {
+            document.getElementById("linksDiv").innerHTML="";
+            var postData={url:""}
+            postData.url=document.getElementById("urlInput").value;
+            $.ajax({
+                type:"POST",
+                data:postData,
+                url:"http://localhost:4001/readUrl/find&open",
+                dataType:"json",
+                success:function(data){
+                    var links=[];
+                   links=(JSON.stringify(data));
+                   data.forEach(link => {
+                    document.getElementById("linksDiv").innerHTML+=`<div>${link}</div>`;
+                    });
+                   
+                    // alert("employee added successfuly");
+                },
+                error: function(err)
+                {
+                    alert(err);
+                },
+                
+            })
+        }
+    </script>
+</head>
+<body>
+    <h2>find links</h2>
+    <div>
+        <label>enter url</label>
+        <input id="urlInput" type="text">
+        <button id="find" onclick="find()">find</button>
+        <button onclick="findANDopen()"> find AND open</button>
+    </div>
+    <div id="linksDiv">
+    </div>
+</body>
