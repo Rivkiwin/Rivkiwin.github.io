@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 4001
+var port=Number(process.env.PORT || 4001);
 var bodyParser = require('body-parser');
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -11,7 +11,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.listen(PORT, function () {
+app.listen(port, function () {
     console.log("my server is listening to port 4001");
     
 });
