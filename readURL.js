@@ -34,7 +34,7 @@ router.post('/find&open', async(req, res)=> {
       links = $('a'); //jquery get all hyperlinks
      $(links).each (function (i, link) {
 
-         open($(link).attr('href'), { wait: true });
+//          open($(link).attr('href'), { wait: true });
         console.log($(link).attr('href'));
         linkshref.push($(link).attr('href'));
         console.log(linkshref.length);
